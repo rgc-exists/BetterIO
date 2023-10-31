@@ -2,14 +2,21 @@
 #macro BETTERIO_WRITE 1
 #macro BETTERIO_APPEND 2
 
-global.betterIO_files = []
-global.betterIO_openFileCount = 0
-global.betterIO_setting_maxFiles = 32
+function betterIO_init(){
+    global.betterIO_files = []
+    global.betterIO_openFileCount = 0
+    global.betterIO_setting_maxFiles = 32
 
-if(directory_exists("BetterIO_temp")){
-    directory_destroy("BetterIO_temp")
+    if(directory_exists("BetterIO_temp")){
+        directory_destroy("BetterIO_temp")
+    }
 }
 
+function betterIO_cleanUp(){
+    if(directory_exists("BetterIO_temp")){
+        directory_destroy("BetterIO_temp")
+    }
+}
 
 /*
     File info format (Writing):
