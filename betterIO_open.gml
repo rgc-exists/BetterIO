@@ -1,4 +1,5 @@
-function betterIO_file_text_open_read(fname){
+#define betterIO_open_read
+    var fname = argument0
     if(file_exists(fname)){
         fileBuffer = buffer_load(fname)
         var entireString = buffer_read(fileBuffer, buffer_text)
@@ -25,14 +26,16 @@ function betterIO_file_text_open_read(fname){
         show_error("BETTERIO ERROR:\nCould not open file, because the path does not exist.\n" + fname, false)
         return;
     }
-}
+return;
 
-function betterIO_file_text_open_write(fname){
+
+#define betterIO_open_write
+    var fname = argument0
     if(file_exists(fname)){
         fileBuffer = buffer_create(1, buffer_grow, 1)
         fileInfo = {
             filePath:fname,
-            buffer_ID:fileBuffer
+            buffer_ID:fileBuffer,
             fullText:"",
             lines:ds_list_create(),
             type:BETTERIO_WRITE
@@ -44,9 +47,11 @@ function betterIO_file_text_open_write(fname){
         show_error("BETTERIO ERROR:\nCould not open file, because the path does not exist.\n" + fname, false)
         return;
     }
-}
+return;
 
-function betterIO_file_text_open_append(fname){
+
+#define betterIO_open_append
+    var fname = argument0
     if(file_exists(fname)){
         fileBuffer = buffer_load(fname)
         var entireString = buffer_read(fileBuffer, buffer_text)
@@ -57,7 +62,7 @@ function betterIO_file_text_open_append(fname){
         }
         fileInfo = {
             filePath:fname,
-            buffer_ID:fileBuffer
+            buffer_ID:fileBuffer,
             fullText:entireString,
             lines:splitLines_ds,
             type:BETTERIO_APPEND
@@ -69,17 +74,19 @@ function betterIO_file_text_open_append(fname){
         show_error("BETTERIO ERROR:\nCould not open file, because the path does not exist.\n" + fname, false)
         return;
     }
-}
+return;
 
-function betterIO_file_text_open_from_string(string){
-    splitLines = string_split(string, "\n")
+
+#define betterIO_open_from_string
+    var str = argument0
+    splitLines = string_split(str, "\n")
     splitLines_ds = ds_list_create()
     for(var l = 0; l < array_length(splitLines); l++){
         ds_list_add(splitLines_ds, splitLines[l])
     }
     fileInfo = {
-        filePath:fname,
-        fullText:string,
+        filePath:":TemporaryFile:",
+        fullText:str,
         lines:splitLines_ds,
         curLineNumb:0,
         type:BETTERIO_READ
@@ -87,4 +94,4 @@ function betterIO_file_text_open_from_string(string){
     array_push(global.betterIO_files, fileInfo)
     global.betterIO_openFileCount++;
     return array_length(global.betterIO_files - 1)
-}
+return;
