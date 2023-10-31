@@ -31,49 +31,39 @@ return;
 
 #define betterIO_open_write
     var fname = argument0
-    if(file_exists(fname)){
-        fileBuffer = buffer_create(1, buffer_grow, 1)
-        fileInfo = {
-            filePath:fname,
-            buffer_ID:fileBuffer,
-            fullText:"",
-            lines:ds_list_create(),
-            type:BETTERIO_WRITE
-        }
-        array_push(global.betterIO_files, fileInfo)
-        global.betterIO_openFileCount++;
-        return array_length(global.betterIO_files - 1)
-    } else {
-        show_error("BETTERIO ERROR:\nCould not open file, because the path does not exist.\n" + fname, false)
-        return;
+    fileBuffer = buffer_create(1, buffer_grow, 1)
+    fileInfo = {
+        filePath:fname,
+        buffer_ID:fileBuffer,
+        fullText:"",
+        lines:ds_list_create(),
+        type:BETTERIO_WRITE
     }
+    array_push(global.betterIO_files, fileInfo)
+    global.betterIO_openFileCount++;
+    return array_length(global.betterIO_files - 1)
 return;
 
 
 #define betterIO_open_append
     var fname = argument0
-    if(file_exists(fname)){
-        fileBuffer = buffer_load(fname)
-        var entireString = buffer_read(fileBuffer, buffer_text)
-        splitLines = string_split(entireString, "\n")
-        splitLines_ds = ds_list_create()
-        for(var l = 0; l < array_length(splitLines); l++){
-            ds_list_add(splitLines_ds, splitLines[l])
-        }
-        fileInfo = {
-            filePath:fname,
-            buffer_ID:fileBuffer,
-            fullText:entireString,
-            lines:splitLines_ds,
-            type:BETTERIO_APPEND
-        }
-        array_push(global.betterIO_files, fileInfo)
-        global.betterIO_openFileCount++;
-        return array_length(global.betterIO_files - 1)
-    } else {
-        show_error("BETTERIO ERROR:\nCould not open file, because the path does not exist.\n" + fname, false)
-        return;
+    fileBuffer = buffer_load(fname)
+    var entireString = buffer_read(fileBuffer, buffer_text)
+    splitLines = string_split(entireString, "\n")
+    splitLines_ds = ds_list_create()
+    for(var l = 0; l < array_length(splitLines); l++){
+        ds_list_add(splitLines_ds, splitLines[l])
     }
+    fileInfo = {
+        filePath:fname,
+        buffer_ID:fileBuffer,
+        fullText:entireString,
+        lines:splitLines_ds,
+        type:BETTERIO_APPEND
+    }
+    array_push(global.betterIO_files, fileInfo)
+    global.betterIO_openFileCount++;
+    return array_length(global.betterIO_files - 1)
 return;
 
 
