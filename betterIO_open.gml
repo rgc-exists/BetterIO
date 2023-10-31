@@ -34,7 +34,7 @@ return;
     fileBuffer = buffer_create(1, buffer_grow, 1)
     fileInfo = {
         filePath:fname,
-        buffer_ID:fileBuffer,
+        buffer:fileBuffer,
         fullText:"",
         lines:ds_list_create(),
         type:BETTERIO_WRITE
@@ -56,7 +56,7 @@ return;
     }
     fileInfo = {
         filePath:fname,
-        buffer_ID:fileBuffer,
+        buffer:fileBuffer,
         fullText:entireString,
         lines:splitLines_ds,
         type:BETTERIO_APPEND
