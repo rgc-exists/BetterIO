@@ -21,7 +21,7 @@
             show_error("BETTERIO ERROR:\nToo many files opened at once. If you would like to open more than " + string(global.betterIO_setting_maxFiles) + " files, please change the global.betterIO_setting_maxFiles variable.", true)
         }
         array_push(global.betterIO_files, fileInfo)
-        return array_length(global.betterIO_files - 1)
+        return array_length(global.betterIO_files) - 1
     } else {
         show_error("BETTERIO ERROR:\nCould not open file, because the path does not exist.\n" + fname, false)
         return;
@@ -41,7 +41,7 @@ return;
     }
     array_push(global.betterIO_files, fileInfo)
     global.betterIO_openFileCount++;
-    return array_length(global.betterIO_files - 1)
+    return array_length(global.betterIO_files) - 1
 return;
 
 
@@ -63,7 +63,7 @@ return;
     }
     array_push(global.betterIO_files, fileInfo)
     global.betterIO_openFileCount++;
-    return array_length(global.betterIO_files - 1)
+    return array_length(global.betterIO_files) - 1
 return;
 
 
@@ -83,5 +83,5 @@ return;
     }
     array_push(global.betterIO_files, fileInfo)
     global.betterIO_openFileCount++;
-    return array_length(global.betterIO_files - 1)
+    return array_length(global.betterIO_files) - 1
 return;
