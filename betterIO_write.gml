@@ -68,7 +68,6 @@ return;
 
 #define betterIO_writeln
     var fileid = argument0
-    var val = argument1
     if(fileid < array_length(global.betterIO_files)){
         var fileInfo = global.betterIO_files[fileid]
         if(!is_undefined(fileInfo)){
