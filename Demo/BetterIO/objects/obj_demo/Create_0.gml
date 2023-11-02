@@ -1,0 +1,9 @@
+times = []
+times_B = []
+times_to_do = 150
+add_each_time = 2500
+cur_time = 0
+graph_width_multiplyer = 8
+graph_height_multiplyer = 250
+mode = 0
+test_mode = 0

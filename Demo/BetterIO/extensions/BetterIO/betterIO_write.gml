@@ -9,6 +9,7 @@
             if(buffer_exists(buffer)){
                 
                 if(fileInfo.type == BETTERIO_WRITE || fileInfo.type == BETTERIO_APPEND){
+                    //fileInfo.fullText += string(val) + " "
                     var curLine = ds_list_find_value(fileInfo.lines, ds_list_size(fileInfo.lines) - 1)
                     curLine += string(val) + " "
                     ds_list_replace(fileInfo.lines, ds_list_size(fileInfo.lines) - 1, curLine)
@@ -43,6 +44,7 @@ return;
             if(buffer_exists(buffer)){
                 
                 if(fileInfo.type == BETTERIO_WRITE || fileInfo.type == BETTERIO_APPEND){
+                    //fileInfo.fullText += val
                     var curLine = ds_list_find_value(fileInfo.lines, ds_list_size(fileInfo.lines) - 1)
                     curLine += string(val) + " "
                     ds_list_replace(fileInfo.lines, ds_list_size(fileInfo.lines) - 1, curLine)
@@ -77,6 +79,7 @@ return;
             if(buffer_exists(buffer)){
                 
                 if(fileInfo.type == BETTERIO_WRITE || fileInfo.type == BETTERIO_APPEND){
+                    //fileInfo.fullText += "\n"
                     ds_list_add(fileInfo.lines, "")
                     buffer_write(buffer, buffer_text, "\n")
                     return true

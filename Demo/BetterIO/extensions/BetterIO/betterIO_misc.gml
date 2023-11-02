@@ -38,7 +38,7 @@ return;
     if(fileid < array_length(global.betterIO_files)){
         var fileInfo = global.betterIO_files[fileid]
         if(!is_undefined(fileInfo)){
-            return buffer_read(fileInfo.buffer, buffer_text)
+            return fileInfo.fullText
         } else {
             show_error("BETTERIO ERROR:\nCould not read text from memory for a file that is already closed.\nFile ID: " + string(fileid), false)
             return;
