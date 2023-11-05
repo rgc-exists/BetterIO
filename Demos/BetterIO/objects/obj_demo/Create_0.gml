@@ -6,4 +6,4 @@ cur_time = 0
 graph_width_multiplyer = 8
 graph_height_multiplyer = 250
 mode = 0
-test_mode = 0
+test_mode = 1
